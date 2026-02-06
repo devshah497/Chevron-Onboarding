@@ -1,0 +1,64 @@
+
+<div class="flex justify-center h-screen bg-gray-100">
+
+  <!-- TopBar -->
+  <aside class="w-58 bg-white border-r p-6 flex flex-col">
+    <a routerLink="/" class="text-2xl font-bold text-blue-600 mb-8 cursor-pointer">
+      Chevron Onboarding
+    </a>
+
+    <nav class="flex flex-col space-y-4 text-gray-700 font-medium">
+      <a routerLink="/admin" 
+        routerLinkActive="bg-gray-200"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="hover:text-blue-600 flex items-center hover:bg-gray-200 p-2 rounded-xl gap-2">
+        <span>🏠</span> Admin Home
+      </a>
+      
+      <a routerLink="/user" 
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="bg-gray-200" 
+        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
+        <span>👤</span> User Home
+      </a>
+      
+      <a routerLink="/admin/learning"  
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="bg-gray-200"
+        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
+        <span>🏛</span> Admin Learning Portal
+      </a>
+      
+      <a routerLink="/user/learning" 
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="bg-gray-200"
+        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
+        <span>📌</span> User Learning
+      </a>
+      
+      <a routerLink="/admin/artefacts" 
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="bg-gray-200"
+        class="hover:text-blue-600 flex hover:bg-gray-200 p-2 rounded-xl items-center gap-2">
+        <span>📊</span> Admin Artefacts
+      </a>
+      
+      <a routerLink="/user/artefacts" 
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="bg-gray-200"
+      class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
+      <span>📣</span> User Aftefacts
+    </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="flex-1 flex flex-col">
+
+    <!-- PAGE CONTENT -->
+    <main class="p-6 pt-4 overflow-auto">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+</div>

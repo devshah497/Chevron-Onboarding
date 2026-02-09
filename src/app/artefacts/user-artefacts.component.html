@@ -1,1 +1,136 @@
-<div>user-artefacts.component.html</div>
+<div class="min-h-[calc(100vh-6rem)] p-4 md:p-6 bg-slate-50">
+  <div class="mb-5">
+    <h1 class="text-3xl font-semibold text-slate-900">Artefacts</h1>
+    <p class="text-sm text-slate-700">Explore onboarding artefacts shared by your teams.</p>
+  </div>
+
+  <!-- Top module nav (chips) -->
+  <div class="flex flex-wrap gap-2 mb-6">
+    <a [routerLink]="['/', routePrefix]"
+       class="px-3 py-1.5 rounded-full ring-1 ring-slate-200 bg-white text-slate-900 hover:bg-slate-100">
+      C. Library
+    </a>
+    <a [routerLink]="['/', routePrefix, 'learning']"
+       class="px-3 py-1.5 rounded-full ring-1 ring-slate-200 bg-white text-slate-900 hover:bg-slate-100">
+      C. Learning
+    </a>
+    <button type="button"
+            class="px-3 py-1.5 rounded-full ring-1 ring-slate-200 bg-white text-slate-900 cursor-default">
+      C. Certifications
+    </button>
+    <button type="button"
+            class="px-3 py-1.5 rounded-full ring-1 ring-slate-200 bg-white text-slate-900 cursor-default">
+      Skills
+    </button>
+    <button type="button"
+            class="px-3 py-1.5 rounded-full ring-1 ring-slate-200 bg-white text-slate-900 cursor-default">
+      AI
+    </button>
+    <a [routerLink]="['/', routePrefix, 'artefacts']"
+       class="px-3 py-1.5 rounded-full ring-2 ring-emerald-300 bg-emerald-50 text-emerald-800">
+      C. Artefacts
+    </a>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
+    <div class="flex flex-wrap gap-2">
+    @for (cat of categories; track cat) {
+        <button
+        (click)="onSelectCategory(cat)"
+        class="px-4 py-2 text-lg rounded-lg m-1 cursor-pointer ring-1 transition font-medium"
+        [ngClass]="
+            activeCategory() === cat
+            ? 'bg-emerald-600 text-white ring-emerald-600 shadow-sm'
+            : 'bg-white text-slate-900 ring-slate-200 hover:bg-slate-100'
+        ">
+        {{ cat }}
+        </button>
+    }
+    </div>
+
+    <!-- Search -->
+    <div class="relative w-full md:w-80">
+      <input
+        type="text"
+        [ngModel]="query()"
+        (ngModelChange)="query.set($event)"
+        placeholder="Search artefacts…"
+        class="w-full rounded-xl border border-slate-300 shadow-sm
+               focus:ring-emerald-500 focus:border-emerald-500
+               px-4 py-2.5 placeholder:text-slate-500 bg-white text-slate-900"
+      />
+      <div class="pointer-events-none absolute inset-y-0 right-3 my-auto text-slate-500">⌕</div>
+    </div>
+  </div>
+
+  <!-- Cards Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+    @for (item of filtered(); track item.id) {
+      <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden flex flex-col">
+        <!-- Category ribbon (accent only) -->
+        <div class="h-1.5 w-full
+            @if (item.category === 'Value Adds') { bg-emerald-500 }
+            @else if (item.category === 'POV') { bg-teal-500 }
+            @else if (item.category === 'Case Studies') { bg-sky-500 }
+            @else { bg-lime-500 }">
+        </div>
+
+        <div class="p-4">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="h-3 w-1.5 rounded
+                  @if (item.category === 'Value Adds') { bg-emerald-600 }
+                  @else if (item.category === 'POV') { bg-teal-600 }
+                  @else if (item.category === 'Case Studies') { bg-sky-600 }
+                  @else { bg-lime-600 }">
+                </span>
+                <div class="text-[11px] font-semibold tracking-wide uppercase text-slate-900">
+                  {{ item.category }}
+                </div>
+              </div>
+
+              <h3 class="mt-1 text-lg font-semibold leading-snug text-slate-900">
+                {{ item.title }}
+              </h3>
+            </div>
+
+            <!-- User view only -->
+            <div class="flex items-center gap-1 shrink-0">
+              <button (click)="onView(item)"
+                      class="p-2 rounded-lg hover:bg-slate-100 text-slate-700"
+                      title="View" aria-label="View">
+              </button>
+            </div>
+          </div>
+
+          <p class="mt-2 text-slate-800 text-sm leading-relaxed">
+            {{ item.summary }}
+          </p>
+
+          <div class="mt-3 flex flex-wrap gap-2">
+            @for (t of item.tags; track t) {
+              <span class="px-2 py-0.5 rounded-lg text-[12px] font-medium ring-1"
+                    [ngClass]="tagColor(t)">
+                {{ t }}
+              </span>
+            }
+          </div>
+
+          <div class="mt-4 flex items-center justify-between text-xs text-slate-700">
+            <div>Owner: <span class="text-slate-900">{{ item.owner }}</span></div>
+            <div>Updated: <span class="text-slate-900">{{ item.updatedAt }}</span></div>
+          </div>
+        </div>
+      </article>
+    }
+
+    @if (filtered().length === 0) {
+      <div class="col-span-full rounded-2xl bg-white ring-1 ring-slate-200 p-10 text-center">
+        <div class="text-slate-900 font-medium">No artefacts match your filters.</div>
+        <div class="text-slate-700 text-sm mt-1">Try a different keyword or category.</div>
+      </div>
+    }
+  </div>
+</div>

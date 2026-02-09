@@ -8,6 +8,18 @@ import { UserLearningComponent } from './learning/user-learning.component';
 import { MainLayoutComponent } from './layout/main-layout.component';
 
 export const routes: Routes = [
+  // 1) Redirect the empty path to /login
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+
+  // 2) Login lives OUTSIDE the main layout
+  {
+    path: 'login',
+    // Lazy-load the standalone component
+    loadComponent: () =>
+      import('./auth/login.component').then(m => m.LoginComponent),
+  },
+
+  // 3) App area under main layout
   {
     path: '',
     component: MainLayoutComponent,
@@ -19,5 +31,8 @@ export const routes: Routes = [
       { path: 'admin/artefacts', component: AdminArtefactsComponent },
       { path: 'user/artefacts', component: UserArtefactsComponent },
     ]
-  }
+  },
+
+  // 4) Fallback
+  { path: '**', redirectTo: 'login' }
 ];

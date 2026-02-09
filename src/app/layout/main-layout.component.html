@@ -3,59 +3,66 @@
 
   <!-- TopBar -->
   <aside class="w-58 bg-white border-r p-6 flex flex-col">
-    <a routerLink="/" class="text-2xl font-bold text-blue-600 mb-8 cursor-pointer">
+    <a [routerLink]="['/', role]" class="text-2xl font-bold text-blue-600 mb-8 cursor-pointer">
       Chevron Onboarding
     </a>
 
     <nav class="flex flex-col space-y-4 text-gray-700 font-medium">
-      <a routerLink="/admin" 
+      <a [routerLink]="['/', role]" 
         routerLinkActive="bg-gray-200"
         [routerLinkActiveOptions]="{ exact: true }"
         class="hover:text-blue-600 flex items-center hover:bg-gray-200 p-2 rounded-xl gap-2">
-        <span>🏠</span> Admin Home
+        <span>🏠</span> Home
       </a>
       
-      <a routerLink="/user" 
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="bg-gray-200" 
-        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
-        <span>👤</span> User Home
-      </a>
-      
-      <a routerLink="/admin/learning"  
+      <a [routerLink]="['/', role, 'learning']"  
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="bg-gray-200"
         class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
-        <span>🏛</span> Admin Learning Portal
+        <span>🏛</span> Learning Portal
       </a>
       
-      <a routerLink="/user/learning" 
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="bg-gray-200"
-        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
-        <span>📌</span> User Learning
-      </a>
-      
-      <a routerLink="/admin/artefacts" 
+      <a [routerLink]="['/', role, 'artefacts']" 
         [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive="bg-gray-200"
         class="hover:text-blue-600 flex hover:bg-gray-200 p-2 rounded-xl items-center gap-2">
-        <span>📊</span> Admin Artefacts
+        <span>📊</span> Artefacts
       </a>
-      
-      <a routerLink="/user/artefacts" 
-      [routerLinkActiveOptions]="{ exact: true }"
-      routerLinkActive="bg-gray-200"
-      class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
-      <span>📣</span> User Aftefacts
-    </a>
-      
+    
+      <a [routerLink]="['/', role, 'library']" 
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="bg-gray-200"
+        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
+        <span>📚</span> Library
+      </a>
+    
+      <a  [routerLink]="['/', role, 'certifications']" 
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="bg-gray-200"
+        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
+        <span>📜</span> Certifications
+      </a>
+
+      <a [routerLink]="['/', role, 'skills']" 
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="bg-gray-200"
+        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
+        <span>🎖️</span> Skills
+      </a>
+
+      <a [routerLink]="['/', role, 'ai']"] 
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="bg-gray-200"
+        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
+        <span>🤖</span> AI
+      </a>
+
       <a routerLink="/login" 
-      [routerLinkActiveOptions]="{ exact: true }"
-      routerLinkActive="bg-gray-200"
-      class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
-      <span>↩</span> Logout
-    </a>
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="bg-gray-200"
+        class="hover:text-blue-600 hover:bg-gray-200 p-2 rounded-xl flex items-center gap-2">
+        <span>↩</span> Logout
+      </a>
     </nav>
   </aside>
 
@@ -63,7 +70,7 @@
   <div class="flex-1 flex flex-col">
 
     <!-- PAGE CONTENT -->
-    <main class="overflow-auto">
+    <main class="overflow-auto p2">
       <router-outlet></router-outlet>
     </main>
 

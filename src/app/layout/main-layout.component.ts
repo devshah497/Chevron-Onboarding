@@ -8,5 +8,19 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
   imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './main-layout.component.html'
 })
-export class MainLayoutComponent {}
+export class MainLayoutComponent {
 
+role: 'admin' | 'user' = 'user';
+
+ngOnInit() {
+  const stored =
+    localStorage.getItem('chevronOnboarding_auth') ||
+    sessionStorage.getItem('chevronOnboarding_auth');
+
+  if (stored) {
+    const parsed = JSON.parse(stored);
+    this.role = parsed.role === 'admin' ? 'admin' : 'user';
+  }
+}
+
+}

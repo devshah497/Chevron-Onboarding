@@ -3,27 +3,28 @@
     <!-- Header -->
     <div class="flex items-center justify-between">
       <div>
-        <h1 class="mt-1 text-2xl font-semibold text-gray-900">Chevron Learning</h1>
+        <h1 class="mt-1 text-3xl font-semibold text-gray-900">Chevron Learning</h1>
+        <p class="text-sm px-0.5 text-slate-700">Learning Management
+        </p>
       </div>
 
       <div class="flex items-center gap-2">
+
+        <div class="rounded-xl bg-white py-1.5 mx-2 px-4 ring-1 ring-gray-100 shadow-sm">
+          <span class="text-lg text-gray-500">Total Modules: </span>
+          <span class="mt-1 text-xl font-semibold text-gray-900">{{ total }}</span>
+        </div>
+
         <button (click)="openAdd()" class="cursor-pointer inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold shadow-sm {{accent.solid}}">
           <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16M4 12h16"/>
           </svg>
           Add Learning
         </button>
+
       </div>
     </div>
-
-    <!-- Stats: ONLY Total Modules -->
-    <div class="grid grid-cols-1 gap-3">
-      <div class="rounded-xl bg-white p-4 ring-1 ring-gray-100 shadow-sm">
-        <p class="text-xs text-gray-500">Total Modules</p>
-        <p class="mt-1 text-2xl font-semibold text-gray-900">{{ total }}</p>
-      </div>
-    </div>
-
+      
     <!-- Category cards -->
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
       @for (c of categories; track c) {
@@ -135,7 +136,7 @@
 
         <div class="flex items-center gap-2">
           <button class="cursor-pointer rounded-lg bg-white px-3 py-2 text-sm ring-1 ring-gray-200 hover:bg-gray-50"
-                  (click)="search=''; categoryFilter=''">
+            (click)="search=''; categoryFilter=''">
             Reset
           </button>
           <button class="cursor-pointer rounded-lg px-4 py-2 text-sm font-semibold shadow-sm {{accent.solid}}" (click)="openAdd()">
@@ -159,7 +160,7 @@
             @for (it of filtered; track it) {
               <tr class="hover:bg-gray-50">
                 <td class="px-4 py-3">
-                  <a [href]="it.link" class="font-medium text-gray-900 hover:text-emerald-700">{{ it.title }}</a>
+                  <a [href]="it.link" class="cursor-pointer font-medium text-gray-900 hover:text-emerald-700">{{ it.title }}</a>
                   <div class="text-xs text-gray-500">Owner: {{ it.owner }}</div>
                 </td>
                 <td class="px-4 py-3">

@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-admin-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './admin-home.component.html'
 })
 export class AdminHomeComponent {

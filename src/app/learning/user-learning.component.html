@@ -1,24 +1,27 @@
 <div class="min-h-[calc(100vh-4rem)] bg-gray-50/70 p-4 md:p-6">
   <div class="mx-auto max-w-7xl space-y-5">
     <!-- Header -->
-    <div>
-      <p class="text-xs text-gray-500">Chevron</p>
-      <h1 class="mt-1 text-2xl font-semibold text-gray-900">Learning Portal</h1>
-      
+    <div class="flex items-center justify-between">
+      <div><h1 class="mt-1 text-3xl font-semibold text-gray-900">Learning Portal</h1>
+        <p class="text-sm px-0.5 text-slate-700">Learning Management
+        </p>
     </div>
 
-    <!-- Stats: Total Modules -->
-    <div class="grid grid-cols-1 gap-3">
-      <div class="rounded-xl bg-white p-4 ring-1 ring-gray-100 shadow-sm">
-        <p class="text-xs text-gray-500">Total Modules</p>
-        <p class="mt-1 text-2xl font-semibold text-gray-900">{{ total }}</p>
+    <div class="flex items-center gap-2">
+      <div class="rounded-xl bg-white py-1.5 mx-2 px-4 ring-1 ring-gray-100 shadow-sm">
+        <span class="text-lg text-gray-500">Total Modules: </span>
+        <span class="mt-1 text-xl font-semibold text-gray-900">{{ total }}</span>
       </div>
+    </div>
     </div>
 
     <!-- Category cards (read-only) -->
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-      <ng-container *ngFor="let c of categories">
-        <div class="relative rounded-2xl bg-linear-to-b p-1 shadow-sm ring-1 ring-gray-100" [ngClass]="getMeta(c).tint">
+      @for (c of categories; track c) {
+        <div
+          class="relative rounded-2xl bg-linear-to-b p-1 shadow-sm ring-1 ring-gray-100"
+          [ngClass]="getMeta(c).tint"
+        >
           <div class="rounded-2xl bg-white/70 p-4 backdrop-blur">
             <div class="flex items-start justify-between">
               <div>
@@ -26,54 +29,75 @@
                 <p class="mt-0.5 text-xs text-gray-500">{{ getMeta(c).subtitle }}</p>
               </div>
 
-              <div class="rounded-lg p-2 {{accent.soft}}">
-                <svg *ngIf="getMeta(c).icon === 'domain'" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18M6 3v18"/>
-                </svg>
-                <svg *ngIf="getMeta(c).icon === 'process'" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h8l2 3h6M4 17h8l2-3h6"/>
-                </svg>
-                <svg *ngIf="getMeta(c).icon === 'tech'" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 12h12M12 6v12M4 8l8-4 8 4v8l-8 4-8-4z"/>
-                </svg>
-                <svg *ngIf="getMeta(c).icon === 'poc'" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h10M4 17h6"/>
-                </svg>
-                <svg *ngIf="getMeta(c).icon === 'assessment'" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7 7h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/>
-                </svg>
+              <div class="rounded-lg p-2 {{ accent.soft }}">
+                @if (getMeta(c).icon === 'domain') {
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18M6 3v18" />
+                  </svg>
+                } @else if (getMeta(c).icon === 'process') {
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h8l2 3h6M4 17h8l2-3h6" />
+                  </svg>
+                } @else if (getMeta(c).icon === 'tech') {
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12h12M12 6v12M4 8l8-4 8 4v8l-8 4-8-4z" />
+                  </svg>
+                } @else if (getMeta(c).icon === 'poc') {
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h10M4 17h6" />
+                  </svg>
+                } @else if (getMeta(c).icon === 'assessment') {
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7 7h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z" />
+                  </svg>
+                }
               </div>
             </div>
 
             <ul class="mt-4 space-y-2">
-              <li *ngFor="let it of itemsByCategory(c)" class="group flex items-start justify-between rounded-lg px-2 py-2 hover:bg-gray-50">
-                <div>
-                  <button (click)="openLink(it.link)" class="text-left font-medium text-sm text-gray-800 hover:text-emerald-700">
-                    {{ it.title }}
-                  </button>
-                  <div class="mt-1 flex flex-wrap gap-1">
-                    <span *ngFor="let t of it.tags" class="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] text-gray-600">{{ t }}</span>
-                  </div>
-                </div>
-                <div class="text-xs text-gray-500">
-                  {{ it.updatedAt | date:'mediumDate' }}
-                </div>
-              </li>
+              @for (it of itemsByCategory(c); track it.link ?? it.title) {
+                <li class="group flex items-start justify-between rounded-lg px-2 py-2 hover:bg-gray-50">
+                  <div>
+                    <button
+                      (click)="openLink(it.link)"
+                      class="text-left font-medium text-sm text-gray-800 hover:text-emerald-700"
+                    >
+                      {{ it.title }}
+                    </button>
 
-              <li *ngIf="itemsByCategory(c).length === 0" class="rounded-lg bg-white p-3 text-xs text-gray-500 ring-1 ring-gray-100">
-                No items yet in this category.
-              </li>
+                    <div class="mt-1 flex flex-wrap gap-1">
+                      @for (t of it.tags; track t) {
+                        <span class="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] text-gray-600">
+                          {{ t }}
+                        </span>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="text-xs text-gray-500">
+                    {{ it.updatedAt | date:'mediumDate' }}
+                  </div>
+                </li>
+              }
+
+              @if (itemsByCategory(c).length === 0) {
+                <li class="rounded-lg bg-white p-3 text-xs text-gray-500 ring-1 ring-gray-100">
+                  No items yet in this category.
+                </li>
+              }
             </ul>
 
             <div class="mt-4 flex items-center justify-between">
-              
-              <button (click)="filterByCategory(c)" class="text-sm font-medium text-emerald-700 hover:text-emerald-800">
+              <button
+                (click)="filterByCategory(c)"
+                class="text-sm font-medium text-emerald-700 hover:text-emerald-800 cursor-pointer"
+              >
                 View all →
               </button>
             </div>
           </div>
         </div>
-      </ng-container>
+      }
     </div>
 
     <!-- Search + Filters + Read-only list -->
@@ -81,16 +105,22 @@
       <div class="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-between">
         <div class="flex flex-1 items-center gap-2">
           <div class="relative flex-1">
-            <input [(ngModel)]="search" type="text" placeholder="Search modules, tags..."
-                   class="w-full rounded-xl border-0 bg-gray-50 px-3 py-2.5 pl-9 text-sm text-gray-900 ring-1 ring-inset ring-gray-200
-                          placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+            <input
+              [(ngModel)]="search"
+              type="text"
+              placeholder="Search modules, tags..."
+              class="w-full rounded-xl border-0 bg-gray-50 px-3 py-2.5 pl-9 text-sm text-gray-900 ring-1 ring-inset ring-gray-200
+                     placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            />
             <svg class="pointer-events-none absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z" />
             </svg>
           </div>
 
-          <select [(ngModel)]="categoryFilter"
-                  class="rounded-xl border-0 bg-gray-50 px-3 py-2.5 text-sm ring-1 ring-inset ring-gray-200 focus:ring-2 focus:ring-emerald-500">
+          <select
+            [(ngModel)]="categoryFilter"
+            class="rounded-xl border-0 bg-gray-50 px-3 py-2.5 text-sm ring-1 ring-inset ring-gray-200 focus:ring-2 focus:ring-emerald-500"
+          >
             <option value="">All categories</option>
             <option value="domain">Domain</option>
             <option value="process">Process</option>
@@ -101,8 +131,10 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <button class="rounded-lg bg-white px-3 py-2 text-sm ring-1 ring-gray-200 hover:bg-gray-50"
-                  (click)="search=''; categoryFilter=''">
+          <button
+            class="rounded-lg bg-white px-3 py-2 text-sm ring-1 ring-gray-200 hover:bg-gray-50"
+            (click)="search=''; categoryFilter=''"
+          >
             Reset
           </button>
         </div>
@@ -119,37 +151,55 @@
               <th class="px-4 py-3"></th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-100">
-            <tr *ngFor="let it of filtered" class="hover:bg-gray-50">
-              <td class="px-4 py-3">
-                <button (click)="openLink(it.link)" class="font-medium text-gray-900 hover:text-emerald-700">
-                  {{ it.title }}
-                </button>
-                <div class="text-xs text-gray-500">Owner: {{ it.owner }}</div>
-              </td>
-              <td class="px-4 py-3">
-                <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700 capitalize">{{ it.category }}</span>
-              </td>
-              <td class="px-4 py-3">
-                <div class="flex flex-wrap gap-1">
-                  <span *ngFor="let t of it.tags" class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">{{ t }}</span>
-                </div>
-              </td>
-              <td class="px-4 py-3 text-sm text-gray-600">
-                {{ it.updatedAt | date:'mediumDate' }}
-              </td>
-              <td class="px-4 py-3 text-right">
-                <button (click)="openLink(it.link)" class="rounded-lg bg-white px-3 py-1.5 text-sm ring-1 ring-gray-200 hover:bg-gray-50">
-                  Open
-                </button>
-              </td>
-            </tr>
 
-            <tr *ngIf="filtered.length === 0">
-              <td class="px-4 py-10 text-center text-sm text-gray-500" colspan="5">
-                No items found. Try adjusting filters.
-              </td>
-            </tr>
+          <tbody class="divide-y divide-gray-100">
+            @if (filtered.length > 0) {
+              @for (it of filtered; track it.link ?? it.title) {
+                <tr class="hover:bg-gray-50">
+                  <td class="px-4 py-3">
+                    <button (click)="openLink(it.link)" class="cursor-pointer font-medium text-gray-900 hover:text-emerald-700">
+                      {{ it.title }}
+                    </button>
+                    <div class="text-xs text-gray-500">Owner: {{ it.owner }}</div>
+                  </td>
+
+                  <td class="px-4 py-3">
+                    <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700 capitalize">
+                      {{ it.category }}
+                    </span>
+                  </td>
+
+                  <td class="px-4 py-3">
+                    <div class="flex flex-wrap gap-1">
+                      @for (t of it.tags; track t) {
+                        <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
+                          {{ t }}
+                        </span>
+                      }
+                    </div>
+                  </td>
+
+                  <td class="px-4 py-3 text-sm text-gray-600">
+                    {{ it.updatedAt | date:'mediumDate' }}
+                  </td>
+
+                  <td class="px-4 py-3 text-right">
+                    <button
+                      (click)="openLink(it.link)"
+                      class="rounded-lg bg-white px-3 py-1.5 text-sm ring-1 ring-gray-200 hover:bg-gray-50"
+                    >
+                      Open
+                    </button>
+                  </td>
+                </tr>
+              }
+            } @else {
+              <tr>
+                <td class="px-4 py-10 text-center text-sm text-gray-500" colspan="5">
+                  No items found. Try adjusting filters.
+                </td>
+              </tr>
+            }
           </tbody>
         </table>
       </div>

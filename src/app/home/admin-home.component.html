@@ -1,11 +1,11 @@
-<div class="px-4 sm:px-6 lg:px-8 py-6">
+<div class="py-8 px-6">
   <!-- Page Header -->
   <div class="mb-6 flex items-center justify-between">
     <div>
-      <h1 class="text-2xl font-semibold text-gray-800">Admin Dashboard</h1>
+      <h1 class="text-3xl font-semibold text-gray-800">Admin Dashboard</h1>
       <p class="text-sm text-gray-500">Manage onboarding content and track progress.</p>
     </div>
- 
+
     <!-- Example admin CTAs (optional) -->
     <div class="flex items-center gap-3">
       <button
@@ -18,56 +18,19 @@
       </button>
     </div>
   </div>
- 
-  <!-- Top Chips Navigation (pills) -->
-  <div class="mb-5 flex w-full gap-3 overflow-x-auto pb-1">
-    <a *ngFor="let chip of navChips"
-       [routerLink]="chip.link"
-       class="shrink-0 rounded-2xl border border-emerald-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:border-emerald-300 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
-      {{ chip.label }}
-    </a>
-  </div>
- 
-  <!-- Dashboard Card (Power BI) -->
-  <!-- <section class="rounded-2xl border border-gray-100 bg-white p-4 sm:p-5 shadow-sm">
-    <div class="mb-4 flex items-center justify-between">
-      <div>
-        <h2 class="text-lg font-semibold text-gray-800">Onboarding Analytics</h2>
-        <p class="text-sm text-gray-500">Power BI dashboard embedded below</p>
-      </div>
- 
-      <div class="flex items-center gap-2">
-        <button (click)="refresh()"
-                class="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50">
-          Refresh
-        </button>
-      </div>
-    </div> -->
- 
-    <!-- Responsive 16:9 container -->
-    <!-- <div class="relative w-full overflow-hidden rounded-xl ring-1 ring-gray-100">
-      <div class="pb-[56.25%]"></div>
-      <iframe
-        class="absolute inset-0 h-full w-full"
-        [src]="powerBiSafeUrl"
-        title="Admin Power BI"
-        frameborder="0"
-        allowfullscreen="true">
-      </iframe>
-    </div>
-  </section> -->
- 
-<section class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-  <h2 class="text-lg font-semibold text-gray-800 mb-3">
-    Dashboard Preview
-  </h2>
- 
-  <div class="rounded-xl overflow-hidden border border-gray-100">
-    <img src="https://cdn.dribbble.com/userupload/17730954/file/original-1ca571d72aed46b341defcb0bf9a18e1.png?resize=2048x1536&vertical=center"
+
+  <!-- Dashboard Preview -->
+  <section class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+    <h2 class="text-lg font-semibold text-gray-800 mb-3">
+      Dashboard Preview
+    </h2>
+
+    <div class="rounded-xl overflow-hidden border border-gray-100">
+      <img
+        src="image.jpg"
         alt="Dashboard Screenshot"
-         class="w-full h-auto object-cover" />
-  </div>
-</section>
- 
+        class="w-full h-auto object-cover"
+      />
+    </div>
+  </section>
 </div>
- 

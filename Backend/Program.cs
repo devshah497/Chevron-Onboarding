@@ -10,6 +10,21 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+const string AllowFrontend = "AllowFrontend";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(AllowFrontend, policy =>
+    {
+        policy.WithOrigins(
+                "http://localhost:4200", // Angular dev
+                "http://localhost:4000"  // Angular SSR dev (if you use --ssr)
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+            // .AllowCredentials(); // only if you use cookies/auth
+    });
+});
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
 );

@@ -1,6 +1,7 @@
 using Backend.Data;
 using Backend.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers
 {
@@ -9,7 +10,6 @@ namespace Backend.Controllers
     public class TestDbController : ControllerBase
     {
         private readonly AppDbContext _db;
-
         public TestDbController(AppDbContext db) => _db = db;
 
         [HttpPost("course")]
@@ -22,6 +22,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet("courses")]
-        public IActionResult GetCourses() => Ok(_db.Courses.ToList());
+        public async Task<IActionResult> GetCourses()
+            => Ok(await _db.Courses.ToListAsync());
     }
 }

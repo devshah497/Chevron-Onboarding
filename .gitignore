@@ -1,20 +1,23 @@
-*.sln
+# Environment
 .env
+
+# User-specific
 *.user
 *.suo
+
+# Local databases (SQLite)
 *.db
 *.db-wal
 *.db-shm
+
+# HTTP scratch files
 *.http
-.vs/
-.fake
 
-
-# .NET build outputs
+# Build outputs
 bin/
 obj/
 
-# Visual Studio / VS Code
+# IDE folders
 .vs/
 .vscode/
 

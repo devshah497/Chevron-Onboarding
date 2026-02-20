@@ -4,11 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Data
 {
-    public class AppDbContext(DbContextOptions<AppDbContext> options)
-        : IdentityDbContext<ApplicationUser>(options)
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Course> Courses => Set<Course>();
-        public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
-        public DbSet<UserCourse> UserCourses => Set<UserCourse>();
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Course> Courses { get; set; } = default!;
+        public DbSet<RefreshToken> RefreshTokens { get; set; } = default!;
+        public DbSet<UserCourse> UserCourses { get; set; } = default!;
     }
 }

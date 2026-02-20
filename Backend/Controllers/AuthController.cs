@@ -101,7 +101,7 @@ namespace Backend.Controllers
         {
             var stored = await _db.RefreshTokens.FirstOrDefaultAsync(x => x.Token == request.RefreshToken);
             if (stored == null || stored.IsRevoked || stored.ExpiresAtUtc < DateTime.UtcNow)
-                return Unauthorized("Invalid refresh token");
+            return Unauthorized("Invalid refresh token");
 
             var user = await _userManager.FindByIdAsync(stored.UserId);
             if (user == null) return Unauthorized("Invalid refresh token");

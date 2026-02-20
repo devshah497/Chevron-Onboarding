@@ -11,13 +11,14 @@ namespace Backend.Models.Entities
         public string Title { get; set; } = string.Empty;
 
         public string? Description { get; set; }
-
         public string? Url { get; set; }
 
-        public DateTime? DateAssigned { get; set; }
+        // Optional but useful (matches your UI concept of course category)
+        public string? Category { get; set; }  // Domain / Process / Technology / POC, etc.
 
-        public DateTime? Deadline { get; set; }
-
-        public int? CreatedBy { get; set; } // AdminId (you can FK later)
+        // Audit
+        public string? CreatedByUserId { get; set; } // Admin (Identity user id)
+        public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAtUtc { get; set; } = DateTime.UtcNow;
     }
 }

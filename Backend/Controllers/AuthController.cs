@@ -41,7 +41,15 @@ namespace Backend.Controllers
             var existing = await _userManager.FindByEmailAsync(request.Email);
             if (existing != null) return BadRequest("User already exists");
 
-            var user = new ApplicationUser { UserName = request.Email, Email = request.Email };
+            var user = new ApplicationUser
+            {
+                UserName = request.Email,
+                Email = request.Email,
+                FullName = request.FullName,
+                Domain = request.Domain,
+                PhoneNumber = request.Mobile
+            };
+
             var result = await _userManager.CreateAsync(user, request.Password);
             if (!result.Succeeded) return BadRequest(result.Errors);
 
@@ -49,7 +57,6 @@ namespace Backend.Controllers
 
             var roles = await _userManager.GetRolesAsync(user);
             var accessToken = _jwt.CreateAccessToken(user, roles);
-
             var refreshToken = await CreateRefreshToken(user.Id);
 
             return Ok(new { accessToken, refreshToken, role = roles.FirstOrDefault() });
